@@ -1,0 +1,56 @@
+import { ChevronDown } from "react-feather"
+import ScrollIntoView from "react-scroll-into-view"
+import { useEffect, useRef, useState } from "react"
+import { isMobile } from "react-device-detect"
+
+const ScrollButton = ({ mainRef }) => {
+    const [scrollSelector, setScrollSelector] = useState("#main")
+
+    const scrollButtonRef = useRef(null)
+
+    useEffect(() => {
+        if (!isMobile) {
+            let mainTop = mainRef.current.getBoundingClientRect().y
+            let clientHeight = document.documentElement.clientHeight
+
+            const setScrollParameters = () => {
+                mainTop = mainRef.current.getBoundingClientRect().y
+
+                if (mainTop <= clientHeight) {
+                    scrollButtonRef.current.classList.add("rotate-180")
+                    setScrollSelector("#top")
+                }
+                if (window.scrollY === 0) {
+                    scrollButtonRef.current.classList.remove("rotate-180")
+                    setScrollSelector("#main")
+                }
+            }
+
+            window.addEventListener("scroll", setScrollParameters)
+            return () =>
+                window.removeEventListener("scroll", setScrollParameters)
+        }
+    }, [])
+
+    return (
+        <div
+            className={`fixed right-16 bottom-16 z-50 opacity-80 shadow-box max-lg:hidden`}
+            ref={scrollButtonRef}
+        >
+            <ScrollIntoView
+                selector={scrollSelector}
+                scrollOptions={{ block: "nearest" }}
+            >
+                <button
+                    className="btn btn-square btn-accent backdrop-blur z-50"
+                    title="scroll to main content"
+                    aria-label="scroll button"
+                >
+                    <ChevronDown size={36} />
+                </button>
+            </ScrollIntoView>
+        </div>
+    )
+}
+
+export default ScrollButton

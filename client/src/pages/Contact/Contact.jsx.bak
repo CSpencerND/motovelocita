@@ -1,0 +1,183 @@
+import { Formik, Form, Field } from "formik"
+import { motion } from "framer-motion"
+import axios from "./axios"
+
+const Contact = (props) => {
+    props.useTitle("Contact")
+
+    const REGISTER_URL = "/send"
+
+    return (
+        <motion.div key="contact" {...props.motions}>
+            <div className={`bg-base-100 h-16 md:h-20 shadow-box`}></div>
+
+            <main className="container mx-auto max-w-screen-lg min-h-screen">
+                <div className="m-6 lg:flex gap-6 lg:mb-0">
+                    <section className="my-6 mx-auto max-w-md lg:max-w-none lg:w-full">
+                        <div className="card mx-auto shadow-box">
+                            <Formik
+                                initialValues={{
+                                    firstName: "",
+                                    lastName: "",
+                                    email: "",
+                                    phone: "",
+                                    project: "",
+                                }}
+                                onSubmit={async (values, { setSubmitting }) => {
+                                    try {
+                                        const res = await axios.post(
+                                            REGISTER_URL,
+                                            JSON.stringify(values),
+                                            {
+                                                headers: {
+                                                    "Content-Type":
+                                                        "application/json",
+                                                },
+                                            }
+                                        )
+                                        console.log(res)
+                                        // TODO: use a nice modal instead of the alert
+                                        alert("Thanks, we'll get back to you soon!")
+                                        setSubmitting(false)
+                                    } catch (err) {
+                                        console.log("What is happening...", err)
+                                    }
+                                }}
+                            >
+                                {(props) => (
+                                    <Form className="card-body">
+                                        <h2 className="card-title mx-auto">
+                                            By appointment only
+                                        </h2>
+
+                                        <div className="max-lg:space-y-6 lg:flex lg:gap-3">
+                                            <p className="form-control w-full">
+                                                <label className="input-group input-group-vertical label">
+                                                    <span>first name</span>
+                                                    <Field
+                                                        name="firstName"
+                                                        type="text"
+                                                        placeholder="Bike"
+                                                        className="input input-bordered w-full bg-base-200"
+                                                    />
+                                                </label>
+                                            </p>
+
+                                            <p className="form-control w-full">
+                                                <label className="input-group input-group-vertical label">
+                                                    <span>last name</span>
+                                                    <Field
+                                                        name="lastName"
+                                                        type="text"
+                                                        placeholder="Rider"
+                                                        className="input input-bordered w-full bg-base-200"
+                                                    />
+                                                </label>
+                                            </p>
+                                        </div>
+
+                                        <div className="max-lg:space-y-6 lg:flex lg:gap-3">
+                                            <p className="form-control w-full">
+                                                <label className="input-group input-group-vertical label">
+                                                    <span>email address</span>
+                                                    <Field
+                                                        name="email"
+                                                        type="email"
+                                                        placeholder="someone@awesomemail.com"
+                                                        className="input input-bordered w-full bg-base-200"
+                                                    />
+                                                </label>
+                                            </p>
+
+                                            <p className="form-control w-full">
+                                                <label className="input-group input-group-vertical label">
+                                                    <span>phone number</span>
+                                                    <Field
+                                                        name="phone"
+                                                        type="tel"
+                                                        placeholder="5551234567"
+                                                        pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                                                        className="input input-bordered w-full bg-base-200"
+                                                    />
+                                                </label>
+                                            </p>
+                                        </div>
+
+                                        <div className="lg:flex lg:gap-3">
+                                            <p className="form-control">
+                                                <label className="input-group input-group-vertical label">
+                                                    <span className="label-text">
+                                                        project description -
+                                                        year / make / model
+                                                    </span>
+                                                    <textarea
+                                                        name="project"
+                                                        className="textarea textarea-bordered h-24 bg-base-200"
+                                                        placeholder="year / make / model"
+                                                        onChange={props.handleChange(
+                                                            "project"
+                                                        )}
+                                                    ></textarea>
+                                                </label>
+                                            </p>
+
+                                            <div className="label flex lg:flex-col gap-6 lg:gap-4 max-lg:mt-6">
+                                                <button
+                                                    type="reset"
+                                                    className="btn btn-outline btn-primary grow lg:w-full"
+                                                    onClick={props.handleReset}
+                                                >
+                                                    Reset
+                                                </button>
+                                                <button
+                                                    type="submit"
+                                                    className="btn btn-primary grow lg:w-full"
+                                                    disabled={
+                                                        props.isSubmitting
+                                                    }
+                                                    onClick={props.handleSubmit}
+                                                >
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </Form>
+                                )}
+                            </Formik>
+                        </div>
+                    </section>
+
+                {/*
+                    <section className="my-6 mx-auto max-w-md flex flex-col md:flex-row lg:flex-col gap-6 lg:max-w-fit">
+                        <div className="card mx-auto shadow-box w-full lg:h-full">
+                            <div className="card-body">
+                                <h2 className="card-title">Velocita</h2>
+                                <p>
+                                    93 Forrest St Brooklyn, NY <br />
+                                    <span>718-710-0545</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="card mx-auto shadow-box w-full lg:h-full">
+                            <div className="card-body">
+                                <h2 className="card-title">Shop Hours</h2>
+                                <div>
+                                    <p className="whitespace-nowrap">
+                                        <time dateTime="10">
+                                            Mon - Fri: 10am
+                                        </time>
+                                        -<time dateTime="18">6pm</time>
+                                    </p>
+                                    <p> Sat & Sun: Closed </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                */}
+                </div>
+            </main>
+        </motion.div>
+    )
+}
+
+export default Contact

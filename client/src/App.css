@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    @apply !bg-base-200 relative w-screen overflow-x-hidden;
+}
+
+* {
+    font-family: "Oswald", sans-serif;
+    /* text-transform: uppercase; */
+    @apply tracking-wide text-sm;
+}
+
+.std-transition {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+figcaption {
+    @apply text-xs;
+}
+
+.active,
+.tab-active {
+    @apply cursor-default;
+}
+
+.tab-active {
+    @apply !border-primary;
+}
+
+.tab-bordered {
+    @apply border-b-primary/25;
+}
+
+.card {
+    @apply bg-base-100;
+}
+
+.card-body {
+    @apply gap-6;
+}
+
+.card.image-full:before {
+    @apply bg-base-100 opacity-0;
+}
+
+.btn:not(#menuButton) {
+    @apply shadow-box;
+}
+
+::-webkit-scrollbar {
+    width: 0.25em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #f4c89a;
+    border-radius: 100vw;
+}
+
+@supports (scrollbar-color: #f4c89a hsl(220 12% 20% / 1)) {
+    * {
+        scrollbar-color: #f4c89a hsl(220 12% 20% / 1);
+    }
+}
+
+.input-group > span {
+    @apply text-xs text-base-200 bg-accent;
+}
+
+/* .text-shadow { */
+/*     text-shadow: 0 0 5px hsl(31, 80%, 28%), 0 0 10px hsl(60, 18%, 90%), */
+/*         0 0 15px hsl(31, 80%, 28%); */
+/* } */
+
+.text-shadow {
+    text-shadow: 0 0 5px hsl(60, 0%, 30%), 0 0 10px hsl(60, 18%, 90%),
+        0 0 15px hsl(60, 0%, 60%);
+}

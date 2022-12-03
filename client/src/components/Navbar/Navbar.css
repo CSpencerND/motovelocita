@@ -1,0 +1,25 @@
+@media (min-width: 1024px) {
+    .menu__list {
+        --underline-width: 0;
+        --underline-offset-x: 0;
+
+        position: relative;
+        display: inline-flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .menu__list::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 97%;
+        height: 2px;
+        width: var(--underline-width);
+        transform: translateX(var(--underline-offset-x));
+        background-color: #eaeae1;
+        transition: transform 0.333s, width 0.5s;
+        border-radius: 4px;
+    }
+}
