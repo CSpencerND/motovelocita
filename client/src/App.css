@@ -89,3 +89,7 @@ figcaption {
     text-shadow: 0 0 5px hsl(60, 0%, 30%), 0 0 10px hsl(60, 18%, 90%),
         0 0 15px hsl(60, 0%, 60%);
 }
+
+/* .label-text { */
+/*     transform: translateY(15px); */
+/* } */
