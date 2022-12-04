@@ -58,7 +58,7 @@ module.exports = {
                 "6xl": ["clamp(2.57rem, calc(0.78rem + 8.95vw), 7.15rem)", "1"],
             },
             boxShadow: {
-                box: "0 4px 6px 2px rgb(0 0 0 / 0.4), 0 2px 4px -1px rgb(0 0 0 / 0.4)",
+                box: "0 4px 6px 2px rgb(0 0 0 / 0.2), 0 2px 4px -1px rgb(0 0 0 / 0.2)",
             },
             transitionProperty: {
                 height: "height",
@@ -85,12 +85,12 @@ module.exports = {
                     ...require("daisyui/src/colors/themes")[
                         "[data-theme=luxury]"
                     ],
-                    "base-200": "hsl(220, 12% 12%)",
-                    "base-100": "hsl(220, 12% 16%)",
-                    "neutral-content": "#f4c89a",
-                    "base-content": "#f4c89a",
-                    primary: "#EAEAE1",
-                    accent: "#f4c89a",
+                    "base-100": "hsl(270, 5%, 16%)",
+                    "base-200": "hsl(270, 5%, 12%)",
+                    "neutral-content": "hsl(36, 67%, 73%)",
+                    "base-content": "hsl(36, 67%, 73%)",
+                    primary: "hsl(60 ,17%, 90%)",
+                    accent: "hsl(36, 67%, 73%)",
                     "--rounded-box": "0.3rem",
                     "--rounded-btn": "0.3rem",
                     "--rounded-badge": "0.3rem",
