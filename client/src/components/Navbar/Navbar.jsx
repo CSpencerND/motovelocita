@@ -77,6 +77,7 @@ const Navbar = () => {
                         aria-controls="navMenu"
                     >
                         <Hamburger rounded size={26} color="#eaeae1" />
+                        <span className="sr-only">MENU</span>
                     </button>
                     {/* Alternative for smaller button */}
                     {/* btn-sm grid content-center */}
