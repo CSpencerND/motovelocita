@@ -15,10 +15,6 @@ body {
     @apply tracking-wide text-sm;
 }
 
-.std-transition {
-    @apply transition-all duration-300 ease-in-out;
-}
-
 figcaption {
     @apply text-xs;
 }
@@ -67,19 +63,6 @@ figcaption {
     }
 }
 
-.input-group > span {
-    @apply text-xs text-base-200 bg-accent;
-}
-
-.input,
-.textarea {
-    @apply bg-base-200/60;
-}
-
-.input {
-    @apply input-bordered w-full max-w-xs;
-}
-
 /* .text-shadow { */
 /*     text-shadow: 0 0 5px hsl(31, 80%, 28%), 0 0 10px hsl(60, 18%, 90%), */
 /*         0 0 15px hsl(31, 80%, 28%); */
@@ -89,7 +72,3 @@ figcaption {
     text-shadow: 0 0 5px hsl(60, 0%, 30%), 0 0 10px hsl(60, 18%, 90%),
         0 0 15px hsl(60, 0%, 60%);
 }
-
-/* .label-text { */
-/*     transform: translateY(15px); */
-/* } */

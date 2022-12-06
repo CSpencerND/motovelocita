@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin")
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -66,7 +68,16 @@ module.exports = {
             },
         },
     },
-    plugins: [require("daisyui")],
+    plugins: [
+        require("daisyui"),
+        plugin(({ addBase, addComponents, addUtilities, theme }) => {
+            addUtilities({
+                ".std-transition": {
+                    transition: "all 200ms ease-out",
+                },
+            })
+        }),
+    ],
 
     // daisyUI config (optional)
     daisyui: {
