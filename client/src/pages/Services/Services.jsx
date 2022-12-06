@@ -39,7 +39,7 @@ const Services = (props) => {
 
                 <section className="card bg-base-100 shadow-box m-6 md:mr-3 h-fit">
                     <div className="card-body">
-                        <h2 className="card-title">DUCATI</h2>
+                        <h2 className="card-title pb-3">DUCATI</h2>
                         <ul className="menu p-2 -m-6 text-primary">
                             <li>
                                 <a
@@ -87,7 +87,7 @@ const Services = (props) => {
 
                 <section className="card bg-base-100 shadow-box m-6 h-fit">
                     <div className="card-body">
-                        <h2 className="card-title">TRIUMPH</h2>
+                        <h2 className="card-title pb-3">TRIUMPH</h2>
                         <ul className="menu p-2 -m-6 text-primary">
                             <li>
                                 <a
