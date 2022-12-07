@@ -1,3 +1,19 @@
+/** change autocomplete styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px hsl(270, 5%, 12%) inset !important;
+    -webkit-text-fill-color: hsl(36, 67%, 73%) !important;
+    border: 1px solid hsl(23, 12%, 22%) !important;
+    font-family: "Oswald", sans-serif !important;
+}
+
 .input,
 .textarea {
     @apply input-bordered w-full max-w-xs bg-base-200;
@@ -14,23 +30,49 @@
     }
 
     .label {
-        @apply absolute top-2.5 left-3 pointer-events-none transition-all ease-out;
+        @apply absolute top-1.5 left-3 pointer-events-none transition-all ease-out;
     }
 
     .label-text {
-        @apply text-xs text-primary/50 pointer-events-none;
+        @apply text-sm text-primary/50 pointer-events-none;
     }
 
     .form-control:has(.input:focus, .textarea:focus) .label {
-        @apply -translate-y-[1.6em];
+        @apply -translate-y-[1.3em];
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 42%,
+            rgba(31, 29, 32, 1) 50%,
             rgba(41, 39, 43, 1) 0
         );
     }
 
     .form-control:has(.input:focus, .textarea:focus) .label > .label-text {
-        @apply text-accent/50;
+        @apply text-xs text-accent/50;
+    }
+
+    .form-control:has(.input:not(:placeholder-shown)) .label {
+        @apply -translate-y-[1.3em];
+        background: linear-gradient(
+            to top,
+            rgba(31, 29, 32, 1) 50%,
+            rgba(41, 39, 43, 1) 0
+        );
+    }
+
+    .form-control:has(.textarea:not(:placeholder-shown)) .label {
+        @apply -translate-y-[1.3em];
+        background: linear-gradient(
+            to top,
+            rgba(31, 29, 32, 1) 50%,
+            rgba(41, 39, 43, 1) 0
+        );
+    }
+
+    .form-control:has(.input:not(:placeholder-shown)) .label > .label-text {
+        @apply text-xs text-accent/50;
+    }
+
+    .form-control:has(.textarea:not(:placeholder-shown)) .label > .label-text {
+        @apply text-xs text-accent/50;
     }
 }

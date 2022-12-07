@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import axios from "./axios"
 import "./Form.css"
+import { IMaskInput } from "react-imask"
 
 const schema = yup.object().shape({
     name: yup
@@ -28,6 +29,7 @@ const Form = () => {
         handleSubmit,
         reset,
         formState: { errors },
+        setValue,
     } = useForm({ mode: "onBlur", resolver: yupResolver(schema) })
 
     const onSubmit = (data) => {
@@ -37,22 +39,18 @@ const Form = () => {
     return (
         <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
             <h2 className="card-title pt-8 mx-auto">By appointment only</h2>
-            <form
-                onSubmit={handleSubmit(onSubmit)}
-                className="card-body pt-6"
-            >
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-6">
                 <p className="form-control">
                     <label htmlFor="name" className="label">
                         <span className="label-text">Full Name</span>
                     </label>
-                    <input
-                        {...register("name")}
+                    <IMaskInput
+                        {...register("name", {})}
                         id="name"
                         type="text"
                         inputMode="text"
                         autoComplete="name"
-                        pattern="^([^0-9]*)$"
-                        // placeholder="Bike Rider"
+                        placeholder=" "
                         className="input"
                     />
                 </p>
@@ -62,13 +60,13 @@ const Form = () => {
                     <label htmlFor="email" className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <input
-                        {...register("email")}
+                    <IMaskInput
+                        {...register("email", {})}
                         id="email"
                         type="email"
                         inputMode="email"
                         autoComplete="email"
-                        // placeholder="someone@example.com"
+                        placeholder=" "
                         className="input"
                     />
                 </p>
@@ -78,15 +76,14 @@ const Form = () => {
                     <label htmlFor="phone" className="label">
                         <span className="label-text">Phone</span>
                     </label>
-                    <input
-                        {...register("phone", {
-                            minLength: 10,
-                        })}
+                    <IMaskInput
+                        {...register("phone", {})}
+                        mask="(000) 000-0000"
                         id="phone"
                         type="tel"
                         inputMode="tel"
                         autoComplete="tel"
-                        // placeholder="(555) 123-4567"
+                        placeholder=" "
                         className="input"
                     />
                 </p>
@@ -99,10 +96,10 @@ const Form = () => {
                         </span>
                     </label>
                     <textarea
-                        {...register("description")}
+                        {...register("description", {})}
                         id="description"
                         className="textarea textarea-bordered h-24"
-                        // placeholder="What can I do for you?"
+                        placeholder=" "
                     ></textarea>
                 </p>
                 {errors?.description && (
@@ -129,7 +126,7 @@ const Form = () => {
 
 const Error = ({ message }) => {
     return (
-        <div className="badge badge-error gap-2 !-mt-8 z-50">
+        <div className="badge badge-error gap-2 !-mt-8 z-10 bg-opacity-75">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="stroke-current inline-block h-4 w-4"
