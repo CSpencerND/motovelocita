@@ -6,20 +6,35 @@ import axios from "./axios"
 import "./Form.css"
 import { IMaskInput } from "react-imask"
 
-const schema = yup.object().shape({
-    name: yup.string().required("Name is a required field"),
-    email: yup
-        .string()
-        .email("Not a valid email")
-        .required("Email is a required field"),
-    phone: yup.string().required("Phone is a required field"),
-    description: yup.string().required("Description is a required field"),
-})
-
 const Form = () => {
     const REGISTER_URL = "/send"
 
     const [submitState, setSubmitState] = useState("cursor-not-allowed")
+
+    const schema = yup.object().shape({
+        name: yup.string().required("Name is a required field"),
+        email: yup
+            .string()
+            .email("Not a valid email")
+            .required("Email is a required field"),
+        phone: yup
+            .string()
+            .transform((value) => {
+                parsePhone(value)
+                return phoneValue[0]
+            })
+            .required("Phone is a required field")
+            .transform(() => {
+               return phoneValue[1] 
+            }),
+        description: yup.string().required("Description is a required field"),
+    })
+
+    const phoneValue = []
+    const parsePhone = (phone) => {
+        const parsed = phone.replace(/[^0-9]/g, "")
+        phoneValue.push(parsed, phone)
+    }
 
     const {
         register,
@@ -27,7 +42,7 @@ const Form = () => {
         reset,
         formState: { errors },
         setValue,
-    } = useForm({ mode: "onBlur", resolver: yupResolver(schema) })
+    } = useForm({ mode: "onSubmit", resolver: yupResolver(schema) })
 
     const onSubmit = (data) => {
         console.log(data)
@@ -74,7 +89,7 @@ const Form = () => {
                         <span className="label-text">Phone</span>
                     </label>
                     <IMaskInput
-                        {...register("phone")}
+                        {...register("phone", { required: true })}
                         id="phone"
                         type="tel"
                         inputMode="tel"
