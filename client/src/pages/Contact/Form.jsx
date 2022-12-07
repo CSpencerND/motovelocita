@@ -9,7 +9,6 @@ import { IMaskInput } from "react-imask"
 const schema = yup.object().shape({
     name: yup
         .string()
-        .matches("^([^0-9]*)$", "Name should not contain numbers")
         .required("Name is a required field"),
     email: yup
         .string()
@@ -44,8 +43,8 @@ const Form = () => {
                     <label htmlFor="name" className="label">
                         <span className="label-text">Full Name</span>
                     </label>
-                    <IMaskInput
-                        {...register("name", {})}
+                    <input
+                        {...register("name")}
                         id="name"
                         type="text"
                         inputMode="text"
@@ -60,8 +59,8 @@ const Form = () => {
                     <label htmlFor="email" className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <IMaskInput
-                        {...register("email", {})}
+                    <input
+                        {...register("email")}
                         id="email"
                         type="email"
                         inputMode="email"
@@ -77,7 +76,7 @@ const Form = () => {
                         <span className="label-text">Phone</span>
                     </label>
                     <IMaskInput
-                        {...register("phone", {})}
+                        {...register("phone")}
                         mask="(000) 000-0000"
                         id="phone"
                         type="tel"
@@ -96,7 +95,7 @@ const Form = () => {
                         </span>
                     </label>
                     <textarea
-                        {...register("description", {})}
+                        {...register("description")}
                         id="description"
                         className="textarea textarea-bordered h-24"
                         placeholder=" "
