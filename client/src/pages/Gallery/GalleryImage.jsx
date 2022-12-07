@@ -20,7 +20,6 @@ const GalleryImage = ({ image, handleClick }) => {
             <img
                 src={image[1]}
                 alt={image[0].replaceAll("-", " ")}
-                loading="lazy"
                 height="500"
                 width="333"
                 className="rounded-box shadow-box"
@@ -50,7 +49,6 @@ export const HeroImage = () => {
                 className="rounded-b shadow-box"
                 src={heroImg}
                 alt="motorcycle work"
-                loading="eager"
                 style={isHidden}
                 onLoad={handleLoad}
             />
