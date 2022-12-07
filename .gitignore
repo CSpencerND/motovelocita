@@ -12,6 +12,7 @@ coverage
 build
 
 # misc
+Session.vim
 .DS_Store
 .env
 .env.local
