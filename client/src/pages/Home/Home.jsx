@@ -1,13 +1,15 @@
 import { useEffect, useRef } from "react"
 import skull from "./velocita-skull-logo.jpg"
+import poster from "./frame2.png"
+import video from "./velocita.webm"
 import { Link } from "react-router-dom"
 // import ScrollButton from "../../components/ScrollButton/ScrollButton"
 import { motion } from "framer-motion"
 
 const Home = (props) => {
     props.useTitle("Home")
-    // const mainRef = useRef(null)
     const videoRef = useRef(null)
+    // const mainRef = useRef(null)
 
     useEffect(() => {
         videoRef.current.play()
@@ -23,11 +25,13 @@ const Home = (props) => {
                     <video
                         id="video"
                         className="w-full rounded-b shadow-box"
-                        src="https://i.imgur.com/Zppdkp6.mp4"
+                        src={video}
+                        autoPlay
                         loop
                         muted
                         playsInline
-                        poster="./assets/frames/frame2.png"
+                        controls={false}
+                        poster={poster}
                         ref={videoRef}
                     >
                         This is supposed to be a video of the shop. Your browser
