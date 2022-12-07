@@ -7,9 +7,7 @@ import "./Form.css"
 import { IMaskInput } from "react-imask"
 
 const schema = yup.object().shape({
-    name: yup
-        .string()
-        .required("Name is a required field"),
+    name: yup.string().required("Name is a required field"),
     email: yup
         .string()
         .email("Not a valid email")
@@ -77,13 +75,14 @@ const Form = () => {
                     </label>
                     <IMaskInput
                         {...register("phone")}
-                        mask="(000) 000-0000"
                         id="phone"
                         type="tel"
                         inputMode="tel"
                         autoComplete="tel"
                         placeholder=" "
+                        mask="(000) 000-0000"
                         className="input"
+                        onChange={(e) => setValue("phone", e.target.value)}
                     />
                 </p>
                 {errors?.phone && <Error message={errors?.phone?.message} />}
@@ -142,6 +141,7 @@ const Error = ({ message }) => {
             <span className="text-xs">{message}</span>
         </div>
     )
+
     // return (
     //     <div className="alert alert-error shadow-box py-2 pl-0 !-my-4">
     //         <div>
@@ -162,6 +162,57 @@ const Error = ({ message }) => {
     //         </div>
     //     </div>
     // )
+
+    // <p className="form-control">
+    //     <span className="flex">
+    //         <label className="input-group">
+    //             <span className="px-1 py-2.5 bg-accent/20 text-base-200">
+    //                 (
+    //             </span>
+    //             <input
+    //                 {...register("phone")}
+    //                 // mask="(000) 000-0000"
+    //                 id="phone"
+    //                 type="tel"
+    //                 inputMode="tel"
+    //                 autoComplete="tel"
+    //                 maxLength={3}
+    //                 placeholder=" "
+    //                 className="input !rounded-none !w-[70px]"
+    //             />
+    //             <span className="px-1 py-2.5 bg-accent/20 text-base-200 !rounded-none">
+    //                 )
+    //             </span>
+    //         </label>
+    //         <input
+    //             {...register("phone")}
+    //             // mask="(000) 000-0000"
+    //             id="phone"
+    //             type="tel"
+    //             inputMode="tel"
+    //             autoComplete="tel"
+    //             maxLength={3}
+    //             placeholder=" "
+    //             className="input !rounded-none !w-[70px]"
+    //         />
+    //         <label className="input-group">
+    //             <span className="px-1 py-2.5 bg-accent/20 text-base-200 !rounded-none">
+    //                 -
+    //             </span>
+    //             <input
+    //                 {...register("phone")}
+    //                 // mask="(000) 000-0000"
+    //                 id="phone"
+    //                 type="tel"
+    //                 inputMode="tel"
+    //                 autoComplete="tel"
+    //                 maxLength={4}
+    //                 placeholder=" "
+    //                 className="input !rounded-l-none !w-[153px]"
+    //             />
+    //         </label>
+    //     </span>
+    // </p>
 }
 
 export default Form
