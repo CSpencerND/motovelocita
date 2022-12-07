@@ -33,7 +33,7 @@ figcaption {
 }
 
 .card {
-    @apply bg-base-100;
+    @apply bg-base-100 rounded-lg;
 }
 
 .card-body {
