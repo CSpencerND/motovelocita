@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import axios from "./axios"
@@ -17,32 +17,17 @@ const Form = () => {
             .string()
             .email("Not a valid email")
             .required("Email is a required field"),
-        phone: yup
-            .string()
-            .transform((value) => {
-                parsePhone(value)
-                return phoneValue[0]
-            })
-            .required("Phone is a required field")
-            .transform(() => {
-               return phoneValue[1] 
-            }),
+        phone: yup.string().required("Phone is a required field"),
         description: yup.string().required("Description is a required field"),
     })
 
-    const phoneValue = []
-    const parsePhone = (phone) => {
-        const parsed = phone.replace(/[^0-9]/g, "")
-        phoneValue.push(parsed, phone)
-    }
-
     const {
         register,
+        control,
         handleSubmit,
         reset,
         formState: { errors },
-        setValue,
-    } = useForm({ mode: "onSubmit", resolver: yupResolver(schema) })
+    } = useForm({ mode: "onBlur", resolver: yupResolver(schema) })
 
     const onSubmit = (data) => {
         console.log(data)
@@ -52,6 +37,7 @@ const Form = () => {
         <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
             <h2 className="card-title pt-8 mx-auto">By appointment only</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body pt-6">
+                {/** Name */}
                 <p className="form-control">
                     <label htmlFor="name" className="label">
                         <span className="label-text">Full Name</span>
@@ -68,6 +54,7 @@ const Form = () => {
                 </p>
                 {errors?.name && <Error message={errors?.name?.message} />}
 
+                {/** Email */}
                 <p className="form-control">
                     <label htmlFor="email" className="label">
                         <span className="label-text">Email</span>
@@ -84,24 +71,31 @@ const Form = () => {
                 </p>
                 {errors?.email && <Error message={errors?.email?.message} />}
 
+                {/** Phone */}
                 <p className="form-control">
                     <label htmlFor="phone" className="label">
                         <span className="label-text">Phone</span>
                     </label>
-                    <IMaskInput
-                        {...register("phone", { required: true })}
-                        id="phone"
-                        type="tel"
-                        inputMode="tel"
-                        autoComplete="tel"
-                        placeholder=" "
-                        mask="(000) 000-0000"
-                        className="input"
-                        onChange={(e) => setValue("phone", e.target.value)}
+                    <Controller
+                        name="phone"
+                        control={control}
+                        render={({ field }) => (
+                            <IMaskInput
+                                {...field}
+                                id="phone"
+                                type="tel"
+                                inputMode="tel"
+                                autoComplete="tel"
+                                placeholder=" "
+                                mask="(000) 000-0000"
+                                className="input"
+                            />
+                        )}
                     />
                 </p>
                 {errors?.phone && <Error message={errors?.phone?.message} />}
 
+                {/** Description */}
                 <p className="form-control">
                     <label htmlFor="description" className="label">
                         <span className="label-text">
@@ -119,6 +113,7 @@ const Form = () => {
                     <Error message={errors?.description?.message} />
                 )}
 
+                {/** Buttons */}
                 <p className="flex gap-6">
                     <input
                         type="button"
