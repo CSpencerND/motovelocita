@@ -27,7 +27,11 @@ const Form = () => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm({ mode: "onBlur", resolver: yupResolver(schema) })
+    } = useForm({
+        mode: "onBlur",
+        shouldFocusError: false, /** BUG: Needed to prevent crash if phone is empty */
+        resolver: yupResolver(schema),
+    })
 
     const onSubmit = (data) => {
         console.log(data)
@@ -88,6 +92,8 @@ const Form = () => {
                                 autoComplete="tel"
                                 placeholder=" "
                                 mask="(000) 000-0000"
+                                // lazy={false}
+                                // placeholderChar=" "
                                 className="input"
                             />
                         )}
