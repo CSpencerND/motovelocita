@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
@@ -8,8 +8,6 @@ import { IMaskInput } from "react-imask"
 
 const Form = () => {
     const REGISTER_URL = "/send"
-
-    const [submitState, setSubmitState] = useState("cursor-not-allowed")
 
     const schema = yup.object().shape({
         name: yup.string().required("Name is a required field"),
@@ -26,15 +24,40 @@ const Form = () => {
         control,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
     } = useForm({
-        mode: "onBlur",
-        shouldFocusError: false, /** BUG: Needed to prevent crash if phone is empty */
+        mode: "onChange",
+        shouldFocusError: false /** BUG: Needed to prevent crash if phone is empty */,
         resolver: yupResolver(schema),
     })
 
+    const [buttonDisabled, setButtonDisabled] = useState("")
+    const [cursorAllowed, setCursorAllowed] = useState("")
+    const [buttonLoading, setButtonLoading] = useState("")
+    const [buttonTextLoading, setButtonTextLoading] = useState("")
+
+    useEffect(() => {
+        if (isValid) {
+            setButtonDisabled("")
+            setCursorAllowed("")
+        } else {
+            setButtonDisabled("btn-disabled bg-base-100 text-accent")
+            setCursorAllowed("cursor-not-allowed")
+        }
+    }, [isValid])
+
+    useEffect(() => {
+        if (isSubmitting) {
+            setButtonLoading("loading")
+            setButtonTextLoading("")
+        } else {
+            setButtonLoading("")
+            setButtonTextLoading("submit")
+        }
+    }, [isSubmitting])
+
     const onSubmit = (data) => {
-        console.log(data)
+        setTimeout(() => console.log(data), 1000)
     }
 
     return (
@@ -121,17 +144,23 @@ const Form = () => {
 
                 {/** Buttons */}
                 <p className="flex gap-6">
-                    <input
-                        type="button"
-                        value="reset"
-                        className="btn btn-outline btn-primary grow"
-                        onClick={() => reset()}
-                    />
-                    <input
-                        type="submit"
-                        value="submit"
-                        className={`btn btn-primary grow ${submitState}`}
-                    />
+                    <span className="w-full">
+                        <button
+                            type="button"
+                            className="btn btn-outline btn-primary btn-block"
+                            onClick={() => reset()}
+                        >
+                            reset
+                        </button>
+                    </span>
+                    <span className={`w-full ${cursorAllowed}`}>
+                        <button
+                            type="submit"
+                            className={`btn btn-primary btn-block ${buttonDisabled} ${buttonLoading}`}
+                        >
+                            {buttonTextLoading}
+                        </button>
+                    </span>
                 </p>
             </form>
         </div>
