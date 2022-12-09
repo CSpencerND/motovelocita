@@ -28,13 +28,29 @@ select:-webkit-autofill:focus {
     @apply outline-transparent;
 }
 
-@supports selector(:has(.input:focus)) {
-    .form-control {
-        @apply relative;
-    }
+.form-control {
+    @apply relative;
+}
 
+.label-text {
+    @apply text-xs text-accent/50;
+}
+
+@supports not selector(:has(.input:focus)) {
     .label {
-        @apply absolute top-1.5 left-3 pointer-events-none transition-all ease-out;
+        @apply absolute top-3.5 left-3 pointer-events-none transition-all ease-out;
+        @apply -translate-y-[1.4em] p-0 px-1.5;
+        background: linear-gradient(
+            to top,
+            rgba(31, 29, 32, 1) 40%,
+            rgba(41, 39, 43, 1) 0
+        );
+    }
+}
+
+@supports selector(:has(.input:focus)) {
+    .label {
+        @apply absolute top-1 left-3 pointer-events-none transition-all ease-out;
     }
 
     .label-text {
@@ -42,10 +58,10 @@ select:-webkit-autofill:focus {
     }
 
     .form-control:has(.input:focus, .textarea:focus) .label {
-        @apply -translate-y-[1.3em];
+        @apply -translate-y-[.785em] py-0;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 50%,
+            rgba(31, 29, 32, 1) 40%,
             rgba(41, 39, 43, 1) 0
         );
     }
@@ -55,19 +71,19 @@ select:-webkit-autofill:focus {
     }
 
     .form-control:has(.input:not(:placeholder-shown)) .label {
-        @apply -translate-y-[1.3em];
+        @apply -translate-y-[.785em] py-0;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 50%,
+            rgba(31, 29, 32, 1) 40%,
             rgba(41, 39, 43, 1) 0
         );
     }
 
     .form-control:has(.textarea:not(:placeholder-shown)) .label {
-        @apply -translate-y-[1.3em];
+        @apply -translate-y-[.785em] py-0;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 50%,
+            rgba(31, 29, 32, 1) 40%,
             rgba(41, 39, 43, 1) 0
         );
     }
