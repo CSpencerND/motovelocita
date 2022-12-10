@@ -1,18 +1,21 @@
 import { useRef, useEffect } from "react"
 
-const SubmissionModal = ({ isSubmitted, isValid, isSubmitSuccessful }) => {
+const SubmissionModal = ({ isSubmitted, isValid, isSubmitSuccessful, reset }) => {
     const successRef = useRef(null)
     const failureRef = useRef(null)
 
     useEffect(() => {
+        console.log("isSubmitted: ", isSubmitted)
+        console.log("isValid: ", isValid)
         if (isSubmitted && isValid) {
             if (isSubmitSuccessful) {
                 successRef.current.click()
+                reset()
             } else {
                 failureRef.current.click()
             }
         }
-    }, [isSubmitted])
+    }, [isSubmitted, isValid])
 
     return (
         <>

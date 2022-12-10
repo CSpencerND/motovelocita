@@ -42,7 +42,7 @@ select:-webkit-autofill:focus {
         @apply -translate-y-[1.4em] p-0 px-1.5;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 40%,
+            rgba(31, 29, 32, 1) 33.333%,
             rgba(41, 39, 43, 1) 0
         );
     }
@@ -61,7 +61,7 @@ select:-webkit-autofill:focus {
         @apply -translate-y-[.785em] py-0;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 40%,
+            rgba(31, 29, 32, 1) 33.333%,
             rgba(41, 39, 43, 1) 0
         );
     }
@@ -74,7 +74,7 @@ select:-webkit-autofill:focus {
         @apply -translate-y-[.785em] py-0;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 40%,
+            rgba(31, 29, 32, 1) 33.333%,
             rgba(41, 39, 43, 1) 0
         );
     }
@@ -83,7 +83,7 @@ select:-webkit-autofill:focus {
         @apply -translate-y-[.785em] py-0;
         background: linear-gradient(
             to top,
-            rgba(31, 29, 32, 1) 40%,
+            rgba(31, 29, 32, 1) 33.333%,
             rgba(41, 39, 43, 1) 0
         );
     }

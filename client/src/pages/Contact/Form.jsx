@@ -13,17 +13,19 @@ const Form = () => {
         control,
         handleSubmit,
         reset,
+        setFocus,
         formState: {
             errors,
             dirtyFields,
             isSubmitting,
             isSubmitSuccessful,
             isSubmitted,
+            isDirty,
             isValid,
         },
     } = useForm({
         mode: "all",
-        shouldFocusError: false /** BUG: Needed to prevent crash if phone is missing and auto-focused*/,
+        shouldFocusError: false /** BUG: Needed to prevent crash if phone is missing and auto-focused */,
         resolver: yupResolver(schema),
         defaultValues: {
             name: "",
@@ -32,6 +34,10 @@ const Form = () => {
             description: "",
         },
     })
+
+    useEffect(() => {
+        setFocus("name")
+    }, [])
 
     return (
         <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
@@ -88,6 +94,9 @@ const Form = () => {
                         <span className="label-text">Phone</span>
                     </label>
                     <Controller
+                        /** FIX: See how you can set a ref on this, or it's child, so you can allow focus on error.
+                         *  Possibly do it manually with setFocus.
+                         */
                         name="phone"
                         control={control}
                         render={({ field }) => (
@@ -142,7 +151,11 @@ const Form = () => {
                     >
                         reset
                     </button>
-                    <SubmitButton isSubmitting={isSubmitting} />
+                    <SubmitButton
+                        isSubmitting={isSubmitting}
+                        isDirty={isDirty}
+                        isValid={isValid}
+                    />
                 </p>
             </form>
 
@@ -150,12 +163,13 @@ const Form = () => {
                 isSubmitted={isSubmitted}
                 isValid={isValid}
                 isSubmitSuccessful={isSubmitSuccessful}
+                reset={reset}
             />
         </div>
     )
 }
 
-const SubmitButton = ({ isSubmitting }) => {
+const SubmitButton = ({ isSubmitting, isDirty, isValid }) => {
     const [buttonLoading, setButtonLoading] = useState("")
     const [buttonTextLoading, setButtonTextLoading] = useState("")
 
@@ -172,6 +186,7 @@ const SubmitButton = ({ isSubmitting }) => {
     return (
         <button
             type="submit"
+            disabled={!isDirty || !isValid}
             className={`btn btn-primary grow ${buttonLoading}`}
         >
             {buttonTextLoading}
