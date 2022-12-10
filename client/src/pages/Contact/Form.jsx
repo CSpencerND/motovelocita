@@ -3,8 +3,8 @@ import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { schema, axios, submitForm } from "./formUtils"
 import { IMaskInput } from "react-imask"
-import SubmissionModal from "./Modals"
-import ValidationUI from "./ValidationUI"
+import SubmissionModal from "./components/Modals"
+import ValidationUI from "./components/ValidationUI"
 import "./Form.css"
 
 const Form = () => {
