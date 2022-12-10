@@ -1,5 +1,4 @@
-import { CheckCircle } from "react-feather"
-import { useSpring, animated, config, easings } from "@react-spring/web"
+import { Checkmark } from "./Checkmark"
 
 const ValidationUI = ({ dirtyField, error, message }) => {
     return (
@@ -21,24 +20,10 @@ const Error = ({ message }) => {
 }
 
 const ValidIcon = () => {
-    const springProps = useSpring({
-        to: { opacity: 1, transform: "translateY(0)" },
-        from: { opacity: 0, transform: "translateY(-4px)" },
-        config: {
-            ...config.wobbly,
-            ...easings.easeInElastic,
-            friction: 10,
-            mass: 2,
-            tension: 2000,
-        },
-    })
     return (
-        <animated.span
-            className="absolute right-0 my-[1.1rem] mx-4"
-            style={springProps}
-        >
-            <CheckCircle size={16} className="text-success" />
-        </animated.span>
+        <span className="absolute right-0 my-[1.1rem] mx-4">
+            <Checkmark size="24px" />
+        </span>
     )
 }
 

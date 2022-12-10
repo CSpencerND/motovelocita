@@ -1,0 +1,49 @@
+:root {
+    --checkmark-arrow-color: #87d039;
+    --checkmark-arrow-thickness: 4;
+}
+
+.checkmark {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    stroke: var(--checkmark-arrow-color);
+    stroke-width: var(--checkmark-arrow-thickness);
+    stroke-miterlimit: 10;
+    animation: fill 200ms ease-in-out 450ms forwards,
+        scale 150ms ease-in-out 450ms both;
+}
+
+.checkmark__circle {
+    @apply -rotate-3 -translate-x-[0.05rem];
+    stroke-dasharray: 94;
+    stroke-dashoffset: 166;
+    stroke-width: var(--checkmark-arrow-thickness);
+    stroke-miterlimit: 10;
+    fill: none;
+    animation: stroke 300ms cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 150ms cubic-bezier(0.65, 0, 0.45, 1) 400ms forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes scale {
+    0%,
+    100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}

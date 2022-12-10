@@ -15,7 +15,7 @@ const SubmissionModal = ({ isSubmitted, isValid, isSubmitSuccessful, reset }) =>
                 failureRef.current.click()
             }
         }
-    }, [isSubmitted, isValid])
+    }, [isSubmitted, isValid, isSubmitSuccessful, reset])
 
     return (
         <>

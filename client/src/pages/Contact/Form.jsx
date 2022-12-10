@@ -37,7 +37,7 @@ const Form = () => {
 
     useEffect(() => {
         setFocus("name")
-    }, [])
+    }, [setFocus])
 
     return (
         <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
