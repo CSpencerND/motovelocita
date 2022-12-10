@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import logo from "../Navbar/velocita-scaled.png"
+import logo from "../Navbar/velocita-scaled.webp"
 import { Divide as Hamburger } from "hamburger-react"
 import { Link } from "react-router-dom"
 import Tab from "./Tab"

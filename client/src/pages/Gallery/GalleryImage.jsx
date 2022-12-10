@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
-import heroImg from "./motorcycle-work.jpg"
+import heroImg from "./motorcycle-work.webp"
 
 const GalleryImage = ({ image, handleClick }) => {
     const [loaded, setLoaded] = useState(false)

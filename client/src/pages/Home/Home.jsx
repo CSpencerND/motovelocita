@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
-import skull from "./velocita-skull-logo.jpg"
-import poster from "./frame2.png"
+import skull from "./velocita-skull-logo.webp"
+import poster from "./frame2.webp"
 import video from "./velocita.webm"
 import { Link } from "react-router-dom"
 // import ScrollButton from "../../components/ScrollButton/ScrollButton"

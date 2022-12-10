@@ -1,5 +1,5 @@
-import mountains from "./Himalayan-Mountains.jpg"
-import kerry from "./RHandt-Kerry-Sano_Velocita.jpg"
+import mountains from "./Himalayan-Mountains.webp"
+import kerry from "./RHandt-Kerry-Sano_Velocita.webp"
 import { motion } from "framer-motion"
 
 const About = (props) => {

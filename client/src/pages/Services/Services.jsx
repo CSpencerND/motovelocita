@@ -1,4 +1,4 @@
-import skullInvert from "./velocita-skull-logo-inverted-colors.jpg"
+import skullInvert from "./velocita-skull-logo-inverted-colors.webp"
 import { FileText } from "react-feather"
 import { motion } from "framer-motion"
 
