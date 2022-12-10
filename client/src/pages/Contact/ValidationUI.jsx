@@ -21,8 +21,8 @@ const Error = ({ message }) => {
 
 const ValidIcon = () => {
     return (
-        <span className="absolute right-0 my-[1.1rem] mx-4">
-            <Checkmark size="24px" />
+        <span className="absolute right-0 my-[1rem] mx-4">
+            <Checkmark size="22px" />
         </span>
     )
 }
