@@ -94,9 +94,6 @@ const Form = () => {
                         <span className="label-text">Phone</span>
                     </label>
                     <Controller
-                        /** FIX: See how you can set a ref on this, or it's child, so you can allow focus on error.
-                         *  Possibly do it manually with setFocus.
-                         */
                         name="phone"
                         control={control}
                         render={({ field }) => (
@@ -107,7 +104,7 @@ const Form = () => {
                                 inputMode="tel"
                                 autoComplete="tel"
                                 placeholder=" "
-                                mask="(000) 000-0000"
+                                mask="{1} (000) 000-0000"
                                 className="input"
                             />
                         )}
