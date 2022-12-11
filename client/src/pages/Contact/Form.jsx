@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { schema, axios, submitForm } from "./formUtils"
+import { schema, submitForm } from "./formUtils"
 import { IMaskInput } from "react-imask"
 import SubmissionModal from "./components/Modals"
 import ValidationUI from "./components/ValidationUI"
@@ -25,7 +25,7 @@ const Form = () => {
         },
     } = useForm({
         mode: "all",
-        shouldFocusError: false /** BUG: Needed to prevent crash if phone is missing and auto-focused */,
+        shouldFocusError: false,
         resolver: yupResolver(schema),
         defaultValues: {
             name: "",
