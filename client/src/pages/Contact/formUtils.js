@@ -17,16 +17,18 @@ const schema = yup.object().shape({
         .min(20),
 })
 
-axios.create({
-    // baseURL: "http://localhost:3001",
-    baseURL: "https://mvapi.vercel.app/send",
-})
-
 const submitForm = (data) => {
-    console.log(JSON.stringify(data, null, 2))
-    /**
-     * TODO: On the backend, also send an email to the sender including their sent form
-     */
+    const URL = "https://mvapi.vercel.app/send"
+    // const URL = "http://localhost:3001/send"
+
+    axios
+        .post(URL, data)
+        .then((res) => {
+            console.log(res)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 }
 
 export { schema, axios, submitForm }

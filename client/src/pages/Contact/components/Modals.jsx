@@ -5,8 +5,6 @@ const SubmissionModal = ({ isSubmitted, isValid, isSubmitSuccessful, reset }) =>
     const failureRef = useRef(null)
 
     useEffect(() => {
-        console.log("isSubmitted: ", isSubmitted)
-        console.log("isValid: ", isValid)
         if (isSubmitted && isValid) {
             if (isSubmitSuccessful) {
                 successRef.current.click()

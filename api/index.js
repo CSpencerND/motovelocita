@@ -8,6 +8,7 @@ const app = express()
 dotenv.config()
 const PORT = process.env.PORT || 3001
 
+// app.use(cors({ origin: "http://localhost:3000" }))
 app.use(cors({ origin: "https://motovelocita.vercel.app" }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -21,11 +22,11 @@ app.get("/test", (req, res) => {
 
 // send email
 app.post("/send", (req, res) => {
-    const { firstName, lastName, email, phone, project } = req.body
+    const { name, email, phone, description } = req.body
     const hasValues = Object.values(req.body).every((value) => value)
 
     if (hasValues) {
-        sendMail(firstName, lastName, email, phone, project)
+        sendMail(name, email, phone, description)
             .then(() => {
                 console.log("Email sent")
                 return res.status(204).send()
