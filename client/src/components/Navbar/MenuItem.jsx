@@ -5,7 +5,7 @@ const MenuItem = ({ href, label }) => {
     const isActive = href === path ? "bordered" : ""
 
     return (
-        <li className={`${isActive}`}>
+        <li id={label} className={`${isActive}`}>
             <Link to={href}>
                 {label}
             </Link>

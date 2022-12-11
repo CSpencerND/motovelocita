@@ -5,7 +5,7 @@ const Tab = ({ href, label }) => {
     const isActive = href === path ? "tab-active !opacity-100" : ""
 
     return (
-        <li className="menu__item outline-none">
+        <li id={label} className="menu__item outline-none">
             <Link
                 to={href}
                 className={`menu__link tab tab-lg tab-bordered std-transition text-shadow outline-none text-primary opacity-60 ${isActive} hover:opacity-100 hover:bg-accent-focus hover:bg-opacity-10 hover:rounded-t`}
