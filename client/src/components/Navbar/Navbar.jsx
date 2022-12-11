@@ -76,15 +76,18 @@ const Navbar = () => {
                         type="menu"
                         aria-controls="navMenu"
                     >
-                        <Hamburger id="menuButtonIcon" rounded size={26} color="#eaeae1" />
-                        <span className="sr-only">MENU</span>
+                        <Hamburger
+                            rounded
+                            size={26}
+                            color="#eaeae1"
+                            label="Menu Button Icon"
+                        />
+                        <span id="menuButtonText" className="sr-only">
+                            MENU
+                        </span>
                     </button>
-                    {/* Alternative for smaller button */}
-                    {/* btn-sm grid content-center */}
 
-                    <ul
-                        className="tabs p-2 rounded-box max-lg:hidden uppercase menu__list"
-                    >
+                    <ul className="tabs p-2 rounded-box max-lg:hidden uppercase menu__list">
                         <Tab href="/" label="Home" />
                         <Tab href="/services" label="Services" />
                         <Tab href="/gallery" label="Gallery" />
