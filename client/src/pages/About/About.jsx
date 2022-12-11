@@ -12,12 +12,14 @@ const About = (props) => {
             ></div>
 
             <main className="container mx-auto m-6 max-w-screen-lg min-h-screen">
-                <section className="card lg:card-side bg-base-100 shadow-box m-6">
+                <section className="card md:card-side md:space-x-6 md:p-6 bg-base-100 shadow-box m-6">
                     <div className="card image-full">
-                        <figure className="p-6">
+                        <figure className="max-md:p-6">
                             <img
                                 src={mountains}
                                 alt="Riding across the Himalayan Mountains"
+                                height={500}
+                                width={1000}
                                 className="rounded-box opacity-80"
                             />
                         </figure>
@@ -47,7 +49,7 @@ const About = (props) => {
                     </div>
                 </section>
 
-                <section className="card lg:card-side bg-base-100 shadow-box m-6">
+                <section className="card md:card-side md:space-x-6 md:p-6 bg-base-100 shadow-box m-6">
                     <div className="card">
                         <div className="card-body p-6 max-lg:pb-0 max-md:pb-0 lg:pr-0">
                             <h2 className="card-title">ABOUT ME</h2>
@@ -86,10 +88,12 @@ const About = (props) => {
                     </div>
 
                     <div className="card image-full">
-                        <figure className="p-6">
+                        <figure className="max-md:p-6">
                             <img
                                 src={kerry}
                                 alt="RHandt - Kerry Sano - Velocita"
+                                height={500}
+                                width={750}
                                 className="rounded-box"
                             />
                         </figure>
