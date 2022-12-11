@@ -66,7 +66,7 @@ const Home = (props) => {
                     </section>
 
                     <section className="card md:card-side shadow-box m-6 lg:max-h-[295px]">
-                        <div className="card-body">
+                        <div className="card-body md:w-1/2 lg:w-2/3">
                             <h2 className="card-title">GET A QUOTE</h2>
                             <p>
                                 I can do an oil change, a custom build, or
@@ -83,11 +83,13 @@ const Home = (props) => {
                             </div>
                         </div>
 
-                        <figure>
+                        <figure className="md:p-6 md:w-1/2 lg:w-1/3">
                             <img
                                 src={skull}
                                 alt="velocita skull logo"
-                                className="max-h-48 md:max-h-96 w-full object-cover opacity-80"
+                                height={300}
+                                width={450}
+                                className="max-h-48 md:max-h-96 w-full md:rounded-box object-cover opacity-80"
                                 style={{ objectPosition: "50% 42%" }}
                             />
                         </figure>

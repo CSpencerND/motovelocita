@@ -116,6 +116,8 @@ const Services = (props) => {
                         <img
                             src={skullInvert}
                             alt="velocita skull logo"
+                            height={300}
+                            width={450}
                             className="max-h-48 md:max-h-24 lg:max-h-[6.5rem] w-full object-cover opacity-60"
                             style={{ objectPosition: "50% 42%" }}
                         />
