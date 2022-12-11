@@ -9,6 +9,8 @@ const Footer = () => {
             <Link
                 to="/contact"
                 className="btn btn-square btn-outline bg-base-100"
+                aria-label="Link to contact page"
+                title="Email"
                 onClick={() => window.scrollTo(0, 0)}
             >
                 <Mail />
@@ -16,13 +18,15 @@ const Footer = () => {
             {isMobile ? (
                 <a
                     href="tel:718-710-0545"
+                    aria-label="Link to phone number"
+                    title="Telephone"
                     className="btn btn-square btn-outline bg-base-100"
                 >
                     <Phone />
                 </a>
             ) : null}
 
-        {/*
+            {/*
             <a
                 href="https://www.google.com/maps/place/93+Forrest+St,+Brooklyn,+NY+11206/@40.7027338,-73.9327001,17z/data=!3m1!4b1!4m5!3m4!1s0x89c25c06da2a9005:0xe7b68f519eb3fe76!8m2!3d40.7027338!4d-73.9327001"
                 target="_blank"
@@ -36,6 +40,8 @@ const Footer = () => {
                 href="https://www.instagram.com/velocita_moto/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Link to Instagram"
+                title="Instagram"
                 className="btn btn-square btn-outline bg-base-100"
             >
                 <Instagram />

@@ -31,12 +31,16 @@ const BottomNav = () => {
             <Link
                 to="/contact"
                 className="btn btn-square btn-outline bg-base-100/50"
+                aria-label="Link to contact page"
+                title="Email"
                 onClick={() => window.scrollTo(0, 0)}
             >
                 <Mail />
             </Link>
             <a
                 href="tel:718-710-0545"
+                aria-label="Link to phone number"
+                title="Telephone"
                 className="btn btn-square btn-outline bg-base-100/50"
             >
                 <Phone />
@@ -57,6 +61,8 @@ const BottomNav = () => {
                 href="https://www.instagram.com/velocita_moto/"
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Link to Instagram"
+                title="Instagram"
                 className="btn btn-square btn-outline bg-base-100/50"
             >
                 <Instagram />
