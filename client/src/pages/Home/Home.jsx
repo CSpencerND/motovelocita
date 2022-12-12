@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react"
-import skull from "./velocita-skull-logo.webp"
+import skullLG from "./assets/velocita-skull-logo-lg.webp"
+import skullMD from "./assets/velocita-skull-logo-md.webp"
+import skullSM from "./assets/velocita-skull-logo-sm.webp"
 import poster from "./frame2.webp"
 import video from "./velocita.webm"
 import { Link } from "react-router-dom"
@@ -85,7 +87,9 @@ const Home = (props) => {
 
                         <figure className="md:p-6 md:w-1/2 lg:w-1/3">
                             <img
-                                src={skull}
+                                srcSet={`${skullSM} 530w, ${skullMD} 920w, ${skullLG} 1180w`}
+                                sizes="(min-width: 1040px) 267px, (min-width: 780px) 317px, (min-width: 680px) 597px, calc(93.33vw - 28px)"
+                                src={skullLG}
                                 alt="velocita skull logo"
                                 height={300}
                                 width={450}

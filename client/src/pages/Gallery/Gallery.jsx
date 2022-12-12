@@ -1,5 +1,5 @@
 import { useState } from "react"
-import images from "./images-webp"
+import images from "./images"
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import GalleryImage, { HeroImage } from "./GalleryImage"
 // import ScrollButton from "../../components/ScrollButton/ScrollButton"

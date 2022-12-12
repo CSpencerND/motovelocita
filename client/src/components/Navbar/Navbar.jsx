@@ -64,7 +64,7 @@ const Navbar = () => {
                             className="max-h-12 md:max-h-16 rounded-box pl-1"
                             src={logo}
                             alt="velocita logo"
-                            title="Velocita"
+                            title="Velocita motorcycle repair and custom"
                         />
                     </Link>
 

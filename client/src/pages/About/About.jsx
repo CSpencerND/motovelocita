@@ -73,16 +73,17 @@ const About = (props) => {
                                 management.
                             </p>
                             <p>
-                                For more about me, click
+                                Find out more about me at
                                 <span className="ml-2 link link-primary">
                                     <a
                                         href="https://uniongaragenyc.com/blogs/journal/moto-velocita-new-yorks-newest-service-shop"
                                         target="_blank"
                                         rel="noreferrer"
                                     >
-                                        here
+                                        Union Garage NYC
                                     </a>
                                 </span>
+                                .
                             </p>
                         </div>
                     </div>
