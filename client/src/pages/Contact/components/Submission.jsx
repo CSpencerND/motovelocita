@@ -1,48 +1,37 @@
-import { useRef, useEffect } from "react"
+import { useRef, forwardRef, useImperativeHandle, useState } from "react"
+import axios from "axios"
 
-const SubmissionModal = ({ isSubmitSuccessful, fetchSuccess, reset }) => {
-    const successRef = useRef(null)
-    const failureRef = useRef(null)
+const Submission = forwardRef(({ reset }, ref) => {
+    const modalRef = useRef(null)
+    const [successful, setSuccessful] = useState(null)
 
-    useEffect(() => {
-        if (isSubmitSuccessful) {
-            if (fetchSuccess) {
-                successRef.current.click()
+    useImperativeHandle(ref, () => ({
+        async submitForm(formData) {
+            try {
+                await axios.post(
+                    "http://localhost:3001/send",
+                    JSON.stringify(formData),
+                    { headers: { "Content-Type": "application/json" } }
+                )
+                setSuccessful(true)
                 reset()
-            } else {
-                failureRef.current.click()
+            } catch (err) {
+                console.log(err.message)
+                setSuccessful(false)
             }
-        }
-    }, [isSubmitSuccessful, fetchSuccess, reset])
+            console.log(modalRef.current)
+            modalRef.current.click()
+        },
+    }))
 
-    return (
+    const successModal = (
         <>
-            <label
-                htmlFor="successModal"
-                className="hidden"
-                aria-hidden
-                ref={successRef}
-            >
-                open modal
-            </label>
-            <label
-                htmlFor="failureModal"
-                className="hidden"
-                aria-hidden
-                ref={failureRef}
-            >
-                open modal
-            </label>
-            <SuccessModal />
-            <FailureModal />
-        </>
-    )
-}
-
-const SuccessModal = () => {
-    return (
-        <>
-            <input type="checkbox" id="successModal" className="modal-toggle" />
+            <input
+                ref={modalRef}
+                type="checkbox"
+                id="successModal"
+                className="modal-toggle"
+            />
             <div
                 role="dialog"
                 className="modal modal-bottom sm:modal-middle bg-black/50 backdrop-blur-sm"
@@ -68,12 +57,15 @@ const SuccessModal = () => {
             </div>
         </>
     )
-}
 
-const FailureModal = () => {
-    return (
+    const failureModal = (
         <>
-            <input type="checkbox" id="failureModal" className="modal-toggle" />
+            <input
+                ref={modalRef}
+                type="checkbox"
+                id="failureModal"
+                className="modal-toggle"
+            />
             <div
                 role="dialog"
                 className="modal modal-bottom sm:modal-middle bg-black/50 backdrop-blur-sm"
@@ -97,6 +89,8 @@ const FailureModal = () => {
             </div>
         </>
     )
-}
 
-export default SubmissionModal
+    return successful ? successModal : failureModal
+})
+
+export default Submission

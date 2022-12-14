@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { schema } from "./formUtils"
 import InputMask from "react-input-mask"
-import SubmissionModal from "./components/Modals"
-import ValidationUI from "./components/ValidationUI"
-import axios from "axios"
+import Submission from "./components/Submission"
+import ValidationUI, { validationSchema } from "./components/Validation"
 import "./Form.css"
 
 const Form = () => {
-    const [fetchSuccess, setPostSuccess] = useState(false)
-
     const {
         register,
         control,
@@ -28,7 +24,7 @@ const Form = () => {
     } = useForm({
         mode: "all",
         shouldFocusError: false,
-        resolver: yupResolver(schema),
+        resolver: yupResolver(validationSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -37,152 +33,148 @@ const Form = () => {
         },
     })
 
-    const submitForm = async (formData) => {
-        try {
-            await axios.post(
-                "http://localhost:3001/send",
-                JSON.stringify(formData),
-                {
-                    headers: { "Content-Type": "application/json" },
-                }
-            )
-            setPostSuccess(true)
-        } catch (err) {
-            console.log(err.message)
-            setPostSuccess(false)
-        }
-    }
-
     useEffect(() => {
         setFocus("name")
-    }, [setFocus])
+        // eslint-disable-next-line
+    }, [])
+
+    const submissionRef = useRef(null)
+
+    const onSubmit = (data) => {
+        const abortController = new AbortController()
+        submissionRef.current.submitForm(data)
+        return () => abortController.abort()
+    }
 
     return (
-        <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
-            <h2 className="card-title pt-8 mx-auto">Contact</h2>
-            <form
-                onSubmit={handleSubmit(submitForm)}
-                className="card-body pt-6"
-            >
-                {/** Name */}
-                <p className="form-control">
-                    <label htmlFor="name" className="label">
-                        <span className="label-text">Full Name</span>
-                    </label>
-                    <input
-                        {...register("name")}
-                        id="name"
-                        type="text"
-                        inputMode="text"
-                        autoComplete="name"
-                        placeholder=" "
-                        className="input"
-                    />
-                    <ValidationUI
-                        dirtyField={dirtyFields?.name}
-                        error={errors?.name}
-                        message={errors?.name?.message}
-                    />
-                </p>
-
-                {/** Email */}
-                <p className="form-control">
-                    <label htmlFor="email" className="label">
-                        <span className="label-text">Email</span>
-                    </label>
-                    <input
-                        {...register("email")}
-                        id="email"
-                        type="email"
-                        inputMode="email"
-                        autoComplete="email"
-                        placeholder=" "
-                        className="input"
-                    />
-                    <ValidationUI
-                        dirtyField={dirtyFields?.email}
-                        error={errors?.email}
-                        message={errors?.email?.message}
-                    />
-                </p>
-
-                {/** Phone */}
-                <p className="form-control">
-                    <label htmlFor="phone" className="label">
-                        <span className="label-text">Phone</span>
-                    </label>
-                    <Controller
-                        name="phone"
-                        control={control}
-                        render={({ field }) => (
-                            <InputMask
-                                {...field}
-                                id="phone"
-                                type="tel"
-                                inputMode="tel"
-                                autoComplete="tel"
-                                placeholder=" "
-                                mask="1 (999) 999-9999"
-                                maskPlaceholder=""
-                                className="input"
-                                name={field.name}
-                                value={field.value}
-                                onChange={field.onChange}
-                                onBlur={field.onBlur}
-                            />
-                        )}
-                    />
-                    <ValidationUI
-                        dirtyField={dirtyFields?.phone}
-                        error={errors?.phone}
-                        message={errors?.phone?.message}
-                    />
-                </p>
-
-                {/** Description */}
-                <p className="form-control">
-                    <label htmlFor="description" className="label">
-                        <span className="label-text">
-                            Project Details
-                            <span className="text-xs"> with year / make /model</span>
-                        </span>
-                    </label>
-                    <textarea
-                        {...register("description")}
-                        id="description"
-                        className="textarea textarea-bordered h-24 pr-10"
-                        placeholder=" "
-                    ></textarea>
-                    <ValidationUI
-                        dirtyField={dirtyFields?.description}
-                        error={errors?.description}
-                        message={errors?.description?.message}
-                    />
-                </p>
-
-                {/** Buttons */}
-                <p className="flex gap-6">
-                    <button
-                        type="button"
-                        className="btn btn-outline btn-primary"
-                        onClick={() => reset()}
-                    >
-                        reset
-                    </button>
-                    <SubmitButton
-                        isSubmitting={isSubmitting}
-                        isDirty={isDirty}
-                        isValid={isValid}
-                    />
-                </p>
-            </form>
-
-            <SubmissionModal
-                isSubmitSuccessful={isSubmitSuccessful}
-                fetchSuccess={fetchSuccess}
+        <>
+            <Submission
                 reset={reset}
+                ref={submissionRef}
             />
-        </div>
+            <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
+                <h2 className="card-title pt-8 mx-auto">Contact</h2>
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="card-body pt-6"
+                >
+                    {/** Name */}
+                    <p className="form-control">
+                        <label htmlFor="name" className="label">
+                            <span className="label-text">Full Name</span>
+                        </label>
+                        <input
+                            {...register("name")}
+                            id="name"
+                            type="text"
+                            inputMode="text"
+                            autoComplete="name"
+                            placeholder=" "
+                            className="input"
+                        />
+                        <ValidationUI
+                            dirtyField={dirtyFields?.name}
+                            error={errors?.name}
+                            message={errors?.name?.message}
+                        />
+                    </p>
+
+                    {/** Email */}
+                    <p className="form-control">
+                        <label htmlFor="email" className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input
+                            {...register("email")}
+                            id="email"
+                            type="email"
+                            inputMode="email"
+                            autoComplete="email"
+                            placeholder=" "
+                            className="input"
+                        />
+                        <ValidationUI
+                            dirtyField={dirtyFields?.email}
+                            error={errors?.email}
+                            message={errors?.email?.message}
+                        />
+                    </p>
+
+                    {/** Phone */}
+                    <p className="form-control">
+                        <label htmlFor="phone" className="label">
+                            <span className="label-text">Phone</span>
+                        </label>
+                        <Controller
+                            name="phone"
+                            control={control}
+                            render={({ field }) => (
+                                <InputMask
+                                    {...field}
+                                    id="phone"
+                                    type="tel"
+                                    inputMode="tel"
+                                    autoComplete="tel"
+                                    placeholder=" "
+                                    mask="1 (999) 999-9999"
+                                    maskPlaceholder=""
+                                    className="input"
+                                    name={field.name}
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    onBlur={field.onBlur}
+                                />
+                            )}
+                        />
+                        <ValidationUI
+                            dirtyField={dirtyFields?.phone}
+                            error={errors?.phone}
+                            message={errors?.phone?.message}
+                        />
+                    </p>
+
+                    {/** Description */}
+                    <p className="form-control">
+                        <label htmlFor="description" className="label">
+                            <span className="label-text">
+                                Project Details
+                                <span className="text-xs">
+                                    {" "}
+                                    with year / make /model
+                                </span>
+                            </span>
+                        </label>
+                        <textarea
+                            {...register("description")}
+                            id="description"
+                            className="textarea textarea-bordered h-24 pr-10"
+                            placeholder=" "
+                        ></textarea>
+                        <ValidationUI
+                            dirtyField={dirtyFields?.description}
+                            error={errors?.description}
+                            message={errors?.description?.message}
+                        />
+                    </p>
+
+                    {/** Buttons */}
+                    <p className="flex gap-6">
+                        <button
+                            type="button"
+                            className="btn btn-outline btn-primary"
+                            onClick={() => reset()}
+                        >
+                            reset
+                        </button>
+                        <SubmitButton
+                            isSubmitting={isSubmitting}
+                            isDirty={isDirty}
+                            isValid={isValid}
+                        />
+                    </p>
+                </form>
+            </div>
+        </>
     )
 }
 

@@ -1,4 +1,27 @@
 import { Checkmark } from "./Checkmark"
+import * as yup from "yup"
+
+export const validationSchema = yup.object().shape({
+    name: yup
+        .string()
+        .required("Name is a required field")
+        .matches(/^\b\w+\b\s\b\w+\b/, "Must contain first and last name"),
+    email: yup
+        .string()
+        .required("Email is a required field")
+        .email("Must be a valid email"),
+    phone: yup
+        .string()
+        .required("Phone is a required field")
+        .matches(
+            /^1\s\(\d{3}\)\s\d{3}-\d{4}$/,
+            "Phone must include area code plus 7 digits"
+        ),
+    description: yup
+        .string()
+        .required("Description is a required field")
+        .min(20),
+})
 
 const ValidationUI = ({ dirtyField, error, message }) => {
     return (
