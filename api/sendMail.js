@@ -34,8 +34,8 @@ const sendMail = async (name, email, phone, description) => {
         }
 
         await transport.sendMail(mailOptions)
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        return await err
     }
 }
 

@@ -8,8 +8,8 @@ const app = express()
 dotenv.config()
 const PORT = process.env.PORT || 3001
 
-// app.use(cors({ origin: "http://localhost:3000" }))
-app.use(cors({ origin: "https://motovelocita.vercel.app" }))
+app.use(cors({ origin: "http://localhost:3000" }))
+// app.use(cors({ origin: "https://motovelocita.vercel.app" }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -29,11 +29,12 @@ app.post("/send", (req, res) => {
         sendMail(name, email, phone, description)
             .then(() => {
                 console.log("Email sent")
-                return res.status(204).send()
+                res.send()
             })
             .catch((error) => console.log(error.message))
     } else {
         console.log("Missing values")
+        res.status(400).send()
     }
 })
 
