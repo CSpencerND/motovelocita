@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { schema, submitForm } from "./formUtils"
-import { IMaskInput } from "react-imask"
+import { schema } from "./formUtils"
+import InputMask from "react-input-mask"
 import SubmissionModal from "./components/Modals"
 import ValidationUI from "./components/ValidationUI"
+import axios from "axios"
 import "./Form.css"
 
 const Form = () => {
+    const [fetchSuccess, setPostSuccess] = useState(false)
+
     const {
         register,
         control,
@@ -19,7 +22,6 @@ const Form = () => {
             dirtyFields,
             isSubmitting,
             isSubmitSuccessful,
-            isSubmitted,
             isDirty,
             isValid,
         },
@@ -34,6 +36,22 @@ const Form = () => {
             description: "",
         },
     })
+
+    const submitForm = async (formData) => {
+        try {
+            await axios.post(
+                "http://localhost:3001/send",
+                JSON.stringify(formData),
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            )
+            setPostSuccess(true)
+        } catch (err) {
+            console.log(err.message)
+            setPostSuccess(false)
+        }
+    }
 
     useEffect(() => {
         setFocus("name")
@@ -97,15 +115,20 @@ const Form = () => {
                         name="phone"
                         control={control}
                         render={({ field }) => (
-                            <IMaskInput
+                            <InputMask
                                 {...field}
                                 id="phone"
                                 type="tel"
                                 inputMode="tel"
                                 autoComplete="tel"
                                 placeholder=" "
-                                mask="{1} (000) 000-0000"
+                                mask="1 (999) 999-9999"
+                                maskPlaceholder=""
                                 className="input"
+                                name={field.name}
+                                value={field.value}
+                                onChange={field.onChange}
+                                onBlur={field.onBlur}
                             />
                         )}
                     />
@@ -120,7 +143,8 @@ const Form = () => {
                 <p className="form-control">
                     <label htmlFor="description" className="label">
                         <span className="label-text">
-                            Project Description - Year / Make / Model
+                            Project Details
+                            <span className="text-xs"> with year / make /model</span>
                         </span>
                     </label>
                     <textarea
@@ -128,9 +152,6 @@ const Form = () => {
                         id="description"
                         className="textarea textarea-bordered h-24 pr-10"
                         placeholder=" "
-                        cols="28"
-                        rows="5"
-                        wrap="hard"
                     ></textarea>
                     <ValidationUI
                         dirtyField={dirtyFields?.description}
@@ -157,9 +178,8 @@ const Form = () => {
             </form>
 
             <SubmissionModal
-                isSubmitted={isSubmitted}
-                isValid={isValid}
                 isSubmitSuccessful={isSubmitSuccessful}
+                fetchSuccess={fetchSuccess}
                 reset={reset}
             />
         </div>

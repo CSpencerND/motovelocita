@@ -12,7 +12,7 @@ const ValidationUI = ({ dirtyField, error, message }) => {
 const Error = ({ message }) => {
     return (
         <label className="px-1">
-            <span className="label-text-alt text-xs text-error ">
+            <span role="alert" className="label-text-alt text-xs text-error ">
                 {message}
             </span>
         </label>
@@ -21,8 +21,9 @@ const Error = ({ message }) => {
 
 const ValidIcon = () => {
     return (
-        <span className="absolute right-0 my-[1rem] mx-4">
+        <span role="status" className="absolute right-0 my-[1rem] mx-4">
             <Checkmark size="22px" />
+            <span className="sr-only">Input is valid</span>
         </span>
     )
 }

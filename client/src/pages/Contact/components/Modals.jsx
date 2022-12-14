@@ -1,19 +1,19 @@
 import { useRef, useEffect } from "react"
 
-const SubmissionModal = ({ isSubmitted, isValid, isSubmitSuccessful, reset }) => {
+const SubmissionModal = ({ isSubmitSuccessful, fetchSuccess, reset }) => {
     const successRef = useRef(null)
     const failureRef = useRef(null)
 
     useEffect(() => {
-        if (isSubmitted && isValid) {
-            if (isSubmitSuccessful) {
+        if (isSubmitSuccessful) {
+            if (fetchSuccess) {
                 successRef.current.click()
                 reset()
             } else {
                 failureRef.current.click()
             }
         }
-    }, [isSubmitted, isValid, isSubmitSuccessful, reset])
+    }, [isSubmitSuccessful, fetchSuccess, reset])
 
     return (
         <>
@@ -43,7 +43,10 @@ const SuccessModal = () => {
     return (
         <>
             <input type="checkbox" id="successModal" className="modal-toggle" />
-            <div className="modal modal-bottom sm:modal-middle bg-black/50 backdrop-blur-sm">
+            <div
+                role="dialog"
+                className="modal modal-bottom sm:modal-middle bg-black/50 backdrop-blur-sm"
+            >
                 <div className="modal-box bg-base-100 !rounded-lg space-y-4">
                     <h3 className="font-bold text-lg">
                         Thank you for your inquiry!
@@ -71,8 +74,14 @@ const FailureModal = () => {
     return (
         <>
             <input type="checkbox" id="failureModal" className="modal-toggle" />
-            <div className="modal modal-bottom sm:modal-middle bg-black/50 backdrop-blur-sm">
-                <div className="modal-box bg-base-100 !rounded-lg space-y-4">
+            <div
+                role="dialog"
+                className="modal modal-bottom sm:modal-middle bg-black/50 backdrop-blur-sm"
+            >
+                <div
+                    role="dialog"
+                    className="modal-box bg-base-100 !rounded-lg space-y-4"
+                >
                     <h3 className="font-bold text-lg">Oh no!</h3>
                     <p>Something went wrong 😫</p>
                     <p>Please try again</p>

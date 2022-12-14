@@ -5,7 +5,6 @@
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@react-spring/web": "^9.5.5",
-    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.0",
@@ -17,7 +16,7 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-hook-form": "^7.40.0",
-    "react-imask": "^6.4.3",
+    "react-input-mask": "^3.0.0-alpha.2",
     "react-lazy-load-image-component": "^1.5.6",
     "react-loading-skeleton": "^3.1.0",
     "react-responsive-masonry": "^2.1.6",

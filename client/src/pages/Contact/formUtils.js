@@ -1,8 +1,10 @@
 import * as yup from "yup"
-import axios from "axios"
 
 const schema = yup.object().shape({
-    name: yup.string().required("Name is a required field"),
+    name: yup
+        .string()
+        .required("Name is a required field")
+        .matches(/^\b\w+\b\s\b\w+\b/, "Must contain first and last name"),
     email: yup
         .string()
         .required("Email is a required field")
@@ -10,25 +12,28 @@ const schema = yup.object().shape({
     phone: yup
         .string()
         .required("Phone is a required field")
-        .min(14, "Phone should include Area Code and the 7 digits after it"),
+        .matches(
+            /^1\s\(\d{3}\)\s\d{3}-\d{4}$/,
+            "Phone must include area code and the 7 digits"
+        ),
     description: yup
         .string()
         .required("Description is a required field")
         .min(20),
 })
 
-const submitForm = (data) => {
-    const URL = "https://mvapi.vercel.app/send"
-    // const URL = "http://localhost:3001/send"
+// const submitForm = (data) => {
+//     // const URL = "https://mvapi.vercel.app/send"
+//     const URL = "http://localhost:3001/send"
+//
+//     axios
+//         .post(URL, data)
+//         .then((res) => {
+//             console.log(res)
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+// }
 
-    axios
-        .post(URL, data)
-        .then((res) => {
-            console.log(res)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-}
-
-export { schema, axios, submitForm }
+export { schema }
