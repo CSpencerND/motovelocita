@@ -1,9 +1,9 @@
 import { Routes, Route, useLocation } from "react-router-dom"
-import Home from "../../pages/Home/Home"
-import Services from "../../pages/Services/Services"
-import Gallery from "../../pages/Gallery/Gallery"
-import About from "../../pages/About/About"
-import Contact from "../../pages/Contact/Contact"
+import Home from "./Home"
+import Services from "./Services"
+import Gallery from "./Gallery"
+import About from "./About"
+import Contact from "./Contact"
 import { AnimatePresence } from "framer-motion"
 
 const AnimatedRoutes = ({ useTitle }) => {

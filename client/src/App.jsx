@@ -2,7 +2,7 @@ import "./App.css"
 import Navbar from "./components/Navbar/Navbar"
 import BottomNav from "./components/BottomNav/BottomNav"
 import Footer from "./components/BottomNav/Footer"
-import AnimatedRoutes from "./components/AnimatedRoutes/AnimatedRoutes"
+import AnimatedRoutes from "./pages"
 import { BrowserRouter as Router } from "react-router-dom"
 import { isMobile } from "react-device-detect"
 
