@@ -6,7 +6,7 @@ const sendMail = require("./sendMail")
 
 const app = express()
 dotenv.config()
-const PORT = process.env.PORT || 3001
+// const PORT = process.env.PORT || 3001
 
 app.use(
     cors({
@@ -50,8 +50,8 @@ app.use((req, res) => {
 })
 
 // run server
-app.listen(PORT, () => {
-    console.log("listening for requests on port " + PORT)
-})
+// app.listen(PORT, () => {
+//     console.log("listening for requests on port " + PORT)
+// })
 
 module.exports = app

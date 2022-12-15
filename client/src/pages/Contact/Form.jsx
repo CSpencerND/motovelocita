@@ -25,11 +25,6 @@ const Form = forwardRef(({ submitForm }, ref) => {
         },
     })
 
-    useEffect(() => {
-        setFocus("name")
-        // eslint-disable-next-line
-    }, [])
-
     useImperativeHandle(ref, () => ({
         reset,
     }))
