@@ -1,26 +1,18 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, forwardRef, useImperativeHandle } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import InputMask from "react-input-mask"
-import Submission from "./components/Submission"
 import ValidationUI, { validationSchema } from "./components/Validation"
 import "./Form.css"
 
-const Form = () => {
+const Form = forwardRef(({ submitForm }, ref) => {
     const {
         register,
         control,
         handleSubmit,
         reset,
         setFocus,
-        formState: {
-            errors,
-            dirtyFields,
-            isSubmitting,
-            isSubmitSuccessful,
-            isDirty,
-            isValid,
-        },
+        formState: { errors, dirtyFields, isSubmitting, isDirty, isValid },
     } = useForm({
         mode: "all",
         shouldFocusError: false,
@@ -38,20 +30,20 @@ const Form = () => {
         // eslint-disable-next-line
     }, [])
 
-    const submissionRef = useRef(null)
+    useImperativeHandle(ref, () => ({
+        reset,
+    }))
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const abortController = new AbortController()
-        submissionRef.current.submitForm(data)
-        return () => abortController.abort()
+        await submitForm(data)
+        return () => {
+            abortController.abort()
+        }
     }
 
     return (
         <>
-            <Submission
-                reset={reset}
-                ref={submissionRef}
-            />
             <div className="card mx-auto my-6 shadow-box w-full max-w-sm">
                 <h2 className="card-title pt-8 mx-auto">Contact</h2>
                 <form
@@ -176,7 +168,7 @@ const Form = () => {
             </div>
         </>
     )
-}
+})
 
 const SubmitButton = ({ isSubmitting, isDirty, isValid }) => {
     const [buttonLoading, setButtonLoading] = useState("")
