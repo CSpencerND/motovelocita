@@ -1,9 +1,22 @@
+html,
+body {
+    @apply !bg-base-300;
+}
+
+#page404 {
+    @apply !bg-base-300;
+}
+
 .MuiGrid-root {
-    @apply bg-base-200;
+    @apply max-sm:!max-w-sm;
 }
 
 .MuiGrid-root > * {
     @apply text-accent;
+}
+
+svg {
+    @apply max-sm:!max-w-sm;
 }
 
 #message-404 {
@@ -16,21 +29,5 @@
 
 .MuiButtonBase-root {
     font-family: "Oswald", sans-serif !important;
-    @apply !btn !btn-accent !btn-outline !bg-base-100;
-}
-
-@supports selector(:has(#page404)) {
-    html:has(#page404),
-    body:has(#page404) {
-        @apply !bg-base-300;
-    }
-
-    .MuiGrid-root {
-        @apply !bg-base-300;
-    }
-
-    .MuiButtonBase-root {
-        font-family: "Oswald", sans-serif !important;
-        @apply !btn !btn-accent !btn-outline !bg-base-200;
-    }
+    @apply !btn !btn-accent !btn-outline !bg-base-200 !mb-3;
 }
