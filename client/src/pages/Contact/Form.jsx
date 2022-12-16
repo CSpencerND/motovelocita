@@ -11,7 +11,6 @@ const Form = forwardRef(({ submitForm }, ref) => {
         control,
         handleSubmit,
         reset,
-        setFocus,
         formState: { errors, dirtyFields, isSubmitting, isDirty, isValid },
     } = useForm({
         mode: "all",

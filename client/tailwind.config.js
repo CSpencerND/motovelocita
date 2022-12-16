@@ -98,6 +98,7 @@ module.exports = {
                     ],
                     "base-100": "hsl(270, 5%, 16%)",
                     "base-200": "hsl(270, 5%, 12%)",
+                    "base-300": "hsl(270, 5%, 8%)",
                     "neutral-content": "hsl(36, 67%, 73%)",
                     "base-content": "hsl(36, 67%, 73%)",
                     primary: "hsl(60 ,17%, 90%)",

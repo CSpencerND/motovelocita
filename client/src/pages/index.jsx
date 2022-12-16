@@ -1,13 +1,20 @@
-import { Routes, Route, useLocation } from "react-router-dom"
+import { useEffect } from "react"
+import { Routes, Route, useLocation, Navigate } from "react-router-dom"
 import Home from "./Home"
 import Services from "./Services"
 import Gallery from "./Gallery"
 import About from "./About"
 import Contact from "./Contact"
+import NotFound from "./NotFound"
 import { AnimatePresence } from "framer-motion"
 
-const AnimatedRoutes = ({ useTitle }) => {
+const AnimatedRoutes = ({ useTitle, getLocation }) => {
     const location = useLocation()
+
+    useEffect(() => {
+        getLocation(location.pathname)
+        // eslint-disable-next-line
+    }, [location])
 
     const variants = {
         hidden: { opacity: 0 },
@@ -51,6 +58,11 @@ const AnimatedRoutes = ({ useTitle }) => {
                     path="/contact"
                     element={<Contact useTitle={useTitle} motions={motions} />}
                 />
+                <Route
+                    path="/404"
+                    element={<NotFound useTitle={useTitle} motions={motions} />}
+                />
+                <Route path="*" element={<Navigate to="/404" />} />
             </Routes>
         </AnimatePresence>
     )

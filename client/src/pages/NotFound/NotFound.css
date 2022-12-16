@@ -1,0 +1,36 @@
+.MuiGrid-root {
+    @apply bg-base-200;
+}
+
+.MuiGrid-root > * {
+    @apply text-accent;
+}
+
+#message-404 {
+    @apply bg-transparent;
+}
+
+.MuiTypography-root {
+    font-family: "Oswald", sans-serif !important;
+}
+
+.MuiButtonBase-root {
+    font-family: "Oswald", sans-serif !important;
+    @apply !btn !btn-accent !btn-outline !bg-base-100;
+}
+
+@supports selector(:has(#page404)) {
+    html:has(#page404),
+    body:has(#page404) {
+        @apply !bg-base-300;
+    }
+
+    .MuiGrid-root {
+        @apply !bg-base-300;
+    }
+
+    .MuiButtonBase-root {
+        font-family: "Oswald", sans-serif !important;
+        @apply !btn !btn-accent !btn-outline !bg-base-200;
+    }
+}
