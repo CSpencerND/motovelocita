@@ -133,7 +133,7 @@ const Space404 = ({
                         <div className="space-x-6">
                             <a
                                 href={href}
-                                className="btn btn-error btn-outline"
+                                className="btn glass"
                             >
                                 HOME
                             </a>
