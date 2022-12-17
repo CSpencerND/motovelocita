@@ -1,13 +1,12 @@
-import Space404 from "react-space-404"
+import Space404 from "./space404/404"
 import { motion } from "framer-motion"
-import "./NotFound.css"
 
 const NotFound = (props) => {
     props.useTitle("404")
 
     return (
         <motion.div key="notFound" {...props.motions}>
-            <Space404 />
+            <Space404 stay={false} />
         </motion.div>
     )
 }
