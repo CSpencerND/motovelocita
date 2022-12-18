@@ -8,7 +8,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    box-shadow: 0 0 0 1000px hsl(270, 5%, 12%) inset !important;
+    box-shadow: 0 0 0 1000px hsl(270, 5%, 16%) inset !important;
     -webkit-text-fill-color: hsl(36, 67%, 73%) !important;
     border: 1px solid hsl(23, 12%, 22%) !important;
     font-family: "Oswald", sans-serif !important;
@@ -16,7 +16,7 @@ select:-webkit-autofill:focus {
 
 .input,
 .textarea {
-    @apply input-bordered w-full max-w-xs bg-base-200 rounded-md;
+    @apply input-bordered w-full max-w-xs bg-base-100 rounded-md;
 }
 
 .textarea {
@@ -39,12 +39,12 @@ select:-webkit-autofill:focus {
 @supports not selector(:has(.input:focus)) {
     .label {
         @apply absolute top-3.5 left-3 pointer-events-none transition-all ease-out;
-        @apply -translate-y-[1.4em] p-0 px-1.5;
-        background: linear-gradient(
-            to top,
-            rgba(31, 29, 32, 1) 33.333%,
-            rgba(41, 39, 43, 1) 0
-        );
+        @apply -translate-y-[1.4em] p-0 px-1.5 bg-base-100;
+        /* background: linear-gradient( */
+        /*     to top, */
+        /*     rgba(31, 29, 32, 1) 33.333%, */
+        /*     rgba(41, 39, 43, 1) 0 */
+        /* ); */
     }
 }
 
@@ -58,12 +58,12 @@ select:-webkit-autofill:focus {
     }
 
     .form-control:has(.input:focus, .textarea:focus) .label {
-        @apply -translate-y-[.785em] py-0;
-        background: linear-gradient(
-            to top,
-            rgba(31, 29, 32, 1) 33.333%,
-            rgba(41, 39, 43, 1) 0
-        );
+        @apply -translate-y-[.785em] py-0 bg-base-100;
+        /* background: linear-gradient( */
+        /*     to top, */
+        /*     rgba(31, 29, 32, 1) 33.333%, */
+        /*     rgba(41, 39, 43, 1) 0 */
+        /* ); */
     }
 
     .form-control:has(.input:focus, .textarea:focus) .label > .label-text {
@@ -71,21 +71,21 @@ select:-webkit-autofill:focus {
     }
 
     .form-control:has(.input:not(:placeholder-shown)) .label {
-        @apply -translate-y-[.785em] py-0;
-        background: linear-gradient(
-            to top,
-            rgba(31, 29, 32, 1) 33.333%,
-            rgba(41, 39, 43, 1) 0
-        );
+        @apply -translate-y-[.785em] py-0 bg-base-100;
+        /* background: linear-gradient( */
+        /*     to top, */
+        /*     rgba(31, 29, 32, 1) 33.333%, */
+        /*     rgba(41, 39, 43, 1) 0 */
+        /* ); */
     }
 
     .form-control:has(.textarea:not(:placeholder-shown)) .label {
-        @apply -translate-y-[.785em] py-0;
-        background: linear-gradient(
-            to top,
-            rgba(31, 29, 32, 1) 33.333%,
-            rgba(41, 39, 43, 1) 0
-        );
+        @apply -translate-y-[.785em] py-0 bg-base-100;
+        /* background: linear-gradient( */
+        /*     to top, */
+        /*     rgba(31, 29, 32, 1) 33.333%, */
+        /*     rgba(41, 39, 43, 1) 0 */
+        /* ); */
     }
 
     .form-control:has(.input:not(:placeholder-shown)) .label > .label-text {
