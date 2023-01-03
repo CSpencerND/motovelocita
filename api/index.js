@@ -29,6 +29,7 @@ app.get("/test", (req, res) => {
 
 // send email
 app.post("/send", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*")
     const { name, email, phone, description } = req.body
     const hasValues = Object.values(req.body).every((value) => value)
 
