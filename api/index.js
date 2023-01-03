@@ -11,6 +11,10 @@ dotenv.config()
 app.use(
     cors({
         origin: [
+            "https://motovelocita.com",
+            "https://www.motovelocita.com",
+            "https://motovelocita.com/*",
+            "https://www.motovelocita.com/*",
             "https://www.motovelocita.com/contact",
             "https://motovelocita.com/contact",
             "https://motovelocita.vercel.app/contact",
@@ -29,7 +33,6 @@ app.get("/test", (req, res) => {
 
 // send email
 app.post("/send", (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*")
     const { name, email, phone, description } = req.body
     const hasValues = Object.values(req.body).every((value) => value)
 
