@@ -10,7 +10,7 @@ dotenv.config()
 
 app.use(
     cors({
-        origin: "https://www.motovelocita.com/",
+        origin: "https://www.motovelocita.com/contact",
     })
 )
 app.use(express.json())
