@@ -13,7 +13,7 @@ const Contact = (props) => {
     const submitForm = async (formData) => {
         try {
             await axios.post(
-                "https://mvapi.vercel.app/send",
+                "https://api.motovelocita.com/send",
                 JSON.stringify(formData),
                 { headers: { "Content-Type": "application/json" } }
             )
