@@ -20,7 +20,7 @@ const sendMail = async (name, email, phone, description) => {
         })
 
         const mailOptions = {
-            from: "Velocita",
+            from: `Velocita ${email}`,
             to: "motovelocita@gmail.com",
             cc: `${email}`,
             subject: "Veloctia Inquiry",
