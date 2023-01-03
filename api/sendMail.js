@@ -21,7 +21,7 @@ const sendMail = async (name, email, phone, description) => {
 
         const mailOptions = {
             from: "Velocita",
-            to: "cspencernd@gmail.com",
+            to: "motovelocita@gmail.com",
             cc: `${email}`,
             subject: "Veloctia Inquiry",
             text: `${description}\nphone: ${phone}`,
