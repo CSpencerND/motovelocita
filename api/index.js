@@ -10,7 +10,11 @@ dotenv.config()
 
 app.use(
     cors({
-        origin: "https://www.motovelocita.com/contact",
+        origin: [
+            "https://www.motovelocita.com/contact",
+            "https://motovelocita.com/contact",
+            "https://motovelocita.vercel.app/contact",
+        ],
     })
 )
 app.use(express.json())
