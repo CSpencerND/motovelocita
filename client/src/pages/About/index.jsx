@@ -13,22 +13,31 @@ const About = (props) => {
 
             <main className="container mx-auto m-6 max-w-screen-lg min-h-screen">
                 <section className="card md:card-side md:space-x-6 md:p-6 bg-base-100 shadow-box m-6">
-                    <div className="card image-full">
-                        <figure className="max-md:p-6">
-                            <img
-                                src={mountains}
-                                alt="Riding across the Himalayan Mountains"
-                                height={500}
-                                width={1000}
-                                className="rounded-box opacity-80"
-                            />
-                        </figure>
-                        <div className="card-body">
-                            <figcaption className="text-base-200">
-                                Riding across the Himalayan Mountains <br />
-                                Photo by Noah Conopask
-                            </figcaption>
-                        </div>
+                    <div>
+                        <a href="https://advontherocks.com"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="card image-full h-full"
+                        >
+                            <figure className="max-md:p-6">
+                                <img
+                                    src={mountains}
+                                    alt="Riding across the Himalayan Mountains"
+                                    height={500}
+                                    width={1000}
+                                    className="rounded-lg opacity-80"
+                                />
+                            </figure>
+                            <div className="card-body justify-between ">
+                                <figcaption className="text-base-200">
+                                    Riding across the Himalayan Mountains <br />
+                                    Photo by Noah Conopask
+                                </figcaption>
+                                <span className="link link-primary backdrop-blur -m-2 px-2 py-1 rounded-b-lg sm:-m-8 sm:px-4 sm:py-2 bg-black/30">
+                                    @advontherocks
+                                </span>
+                            </div>
+                        </a>
                     </div>
 
                     <div className="card">
@@ -74,7 +83,7 @@ const About = (props) => {
                             </p>
                             <p>
                                 Find out more about me at
-                                <span className="ml-2 link link-primary">
+                                <span className="link link-primary ml-2">
                                     <a
                                         href="https://uniongaragenyc.com/blogs/journal/moto-velocita-new-yorks-newest-service-shop"
                                         target="_blank"
@@ -84,6 +93,20 @@ const About = (props) => {
                                     </a>
                                 </span>
                                 .
+                            </p>
+                            <p>
+                                Want to vacation with your bike?
+                                <br />
+                                Check out
+                                <span>
+                                    <a href="https://advontherocks.com"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="link link-primary ml-2"
+                                    >
+                                        Adventure On The Rocks!
+                                    </a>
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -95,7 +118,7 @@ const About = (props) => {
                                 alt="RHandt - Kerry Sano - Velocita"
                                 height={500}
                                 width={750}
-                                className="rounded-box"
+                                className="rounded-lg"
                             />
                         </figure>
                         <div className="card-body self-end">
